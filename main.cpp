@@ -1,5 +1,7 @@
 //
 // Created by Manju Muralidharan on 10/19/25.
+// Ryan Kotas
+// Variable-Bit encoding program
 //
 #include <iostream>
 #include <fstream>
@@ -21,6 +23,7 @@ int createLeafNodes(int freq[]);
 int buildEncodingTree(int nextFree);
 void generateCodes(int root, string codes[]);
 void encodeMessage(const string& filename, string codes[]);
+
 
 int main() {
     int freq[26] = {0};
