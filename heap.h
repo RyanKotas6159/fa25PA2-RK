@@ -1,7 +1,7 @@
 //
 // Created by Manju Muralidharan on 10/19/25.
 //Ryan Kotas
-//generic heap stucture
+// heap stucture
 //
 //
 
@@ -17,8 +17,13 @@ struct MinHeap {
 
     MinHeap() { size = 0; }
 
+    //insert index at end of heap, restore order using upheap()
     void push(int idx, int weightArr[]) {
-        // TODO: insert index at end of heap, restore order using upheap()
+
+        data[size] = weightArr[idx];
+        upheap(size, data);
+
+
     }
 
     int pop(int weightArr[]) {
@@ -29,6 +34,7 @@ struct MinHeap {
 
     void upheap(int pos, int weightArr[]) {
         // TODO: swap child upward while smaller than parent
+
     }
 
     void downheap(int pos, int weightArr[]) {
