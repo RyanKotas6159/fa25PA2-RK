@@ -19,15 +19,26 @@ struct MinHeap {
 
     //insert index at end of heap, restore order using upheap()
     void push(int idx, int weightArr[]) {
-
+        if (size >= 64)
+        {
+            cout<<"Array full Overflow Warning"<<endl;
+            return;
+        }
         data[size] = weightArr[idx];
+        size++;
         upheap(size, data);
     }
 
     int pop(int weightArr[]) {
         // TODO: remove and return smallest index
         // Replace root with last element, then call downheap()
-        return -1; // placeholder
+
+        int retunred = data[0];
+        data[0] = data[size-1];
+        downheap(0,data);
+
+        size--;
+        return retunred; // placeholder
     }
 
     //swap child upward while smaller than parent
