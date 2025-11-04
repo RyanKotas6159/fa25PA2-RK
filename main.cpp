@@ -95,7 +95,6 @@ int buildEncodingTree(int nextFree) {
     int w1=0;
     int w2=0;
     int combined;
-int count = 0;
     // 1. Create a MinHeap object.
      MinHeap heap;
     // 2. Push all leaf node indices into the heap.
@@ -113,21 +112,22 @@ int count = 0;
         w1 = heap.pop(weightArr);
         w2 = heap.pop(weightArr);
         combined = w1 + w2;
-        leftArr[count] = w1;
-        rightArr[count] = w2;
+        leftArr[nextFree] = w1;
+        rightArr[nextFree] = w2;
         weightArr[nextFree] = combined;
-        count++;
         nextFree++;
         heap.push(nextFree, weightArr);
     }
     // 4. Return the index of the last remaining node (root)
-    return heap.pop(weightArr); // placeholder
+    return nextFree-1;
 }
 
 // Step 4: Use an STL stack to generate codes
 void generateCodes(int root, string codes[]) {
     // TODO:
     // Use stack<pair<int, string>> to simulate DFS traversal.
+    std ::stack<pair<int, string>> stack;
+
     // Left edge adds '0', right edge adds '1'.
     // Record code when a leaf node is reached.
 }
