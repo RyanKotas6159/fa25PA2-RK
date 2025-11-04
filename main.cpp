@@ -111,12 +111,13 @@ int buildEncodingTree(int nextFree) {
     {
         w1 = heap.pop(weightArr);
         w2 = heap.pop(weightArr);
-        combined = w1 + w2;
+        combined = weightArr[w1]+ weightArr[w2];
         leftArr[nextFree] = w1;
         rightArr[nextFree] = w2;
+        charArr[nextFree] = '\0';
         weightArr[nextFree] = combined;
-        nextFree++;
         heap.push(nextFree, weightArr);
+        nextFree++;
     }
     // 4. Return the index of the last remaining node (root)
     return nextFree-1;
@@ -126,7 +127,37 @@ int buildEncodingTree(int nextFree) {
 void generateCodes(int root, string codes[]) {
     // TODO:
     // Use stack<pair<int, string>> to simulate DFS traversal.
-    std ::stack<pair<int, string>> stack;
+    std ::stack<pair<int, string>> st;
+    int i =0;
+    st.push({root, ""});
+
+    while (!st.empty()){
+        int node = st.top().first;
+        string code = st.top().second;
+        st.pop();
+
+        if (leftArr[node] == -1 && rightArr[node] == -1)
+        {
+        char ch = charArr[node];
+            codes[ch -'a'] = code;
+            i++;
+
+        }else
+        {
+            if (leftArr[node] != -1)
+            {
+             st.push({rightArr[node], code + "1"});
+            }
+            if (rightArr[node] == -1)
+            {
+                st.push({leftArr[node], code + "0"});
+            }
+        }
+
+
+
+
+    }
 
     // Left edge adds '0', right edge adds '1'.
     // Record code when a leaf node is reached.
