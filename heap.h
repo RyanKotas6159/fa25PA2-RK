@@ -55,28 +55,35 @@ struct MinHeap {
             child=parent;
         }
     }
+    // swap parent downward while larger than any child
+    void downheap(int pos, int weightArr[]) {
 
-    void downheap(int pos, int weightArr[]) {urn
-        // TODO: swap parent downward while larger than any child
-        int child=pos;
-        int child2=pos;
+        int child=pos*2+1;
+        int child2=pos*2+2;
+        if (size<=0||pos>size||pos<0||child>size||child2>size)
+        {
+            cout<<"Heap Error at DownHeap";
+            return;
+        }
         while (child<size-1 )
         {
-            child=pos*2+1;
-            child2=pos*2+2;
-            if (weightArr[pos] > weightArr[child])
+            if (weightArr[pos] > weightArr[child] || weightArr[pos] > weightArr[child2])
             {
-                swap(pos, child);
-                pos=child;
-            }
-            else if (weightArr[pos] > weightArr[child2])
-            {
-                swap(child2, pos);
-                pos=child2;
+                if (weightArr[child] > weightArr[child2])
+                {
+                    swap(pos, child2);
+                    pos=child;
+                }else
+                {
+                    swap(pos, child);
+                    pos=child;
+                }
             }else
             {
                 return;
             }
+            child=pos*2+1;
+            child2=pos*2+2;
         }
     }
 };
