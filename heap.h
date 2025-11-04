@@ -24,7 +24,7 @@ struct MinHeap {
             cout<<"Array full Overflow Warning"<<endl;
             return;
         }
-        data[size] = weightArr[idx];
+        data[size] = idx;
         size++;
         upheap(idx, weightArr);
     }

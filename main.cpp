@@ -137,30 +137,25 @@ void generateCodes(int root, string codes[]) {
         st.pop();
 
         if (leftArr[node] == -1 && rightArr[node] == -1)
-        {
+        {// Record code when a leaf node is reached.
         char ch = charArr[node];
-            codes[ch -'a'] = code;
+            codes[node] = code;
             i++;
 
-        }else
-        {
+        }   // Left edge adds '0', right edge adds '1'.
             if (leftArr[node] != -1)
             {
-             st.push({rightArr[node], code + "1"});
+             st.push({leftArr[node], code + "0"});
             }
-            if (rightArr[node] == -1)
+            if (rightArr[node] != -1)
             {
-                st.push({leftArr[node], code + "0"});
+                st.push({rightArr[node], code + "1"});
             }
-        }
-
-
 
 
     }
 
-    // Left edge adds '0', right edge adds '1'.
-    // Record code when a leaf node is reached.
+
 }
 
 // Step 5: Print table and encoded message
